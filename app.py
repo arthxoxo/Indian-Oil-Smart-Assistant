@@ -405,7 +405,7 @@ def main():
                 st.info("State distribution chart not available. 'STATE' column not found or is empty.")
         
         with col2:
-            bank_chart = create_bank_distribution_chart()
+            bank_chart = create_bank_distribution()
             if bank_chart:
                 st.plotly_chart(bank_chart, use_container_width=True)
             else:
@@ -704,15 +704,16 @@ def main():
             </div>
             """, unsafe_allow_html=True)
 
-        st.markdown("---")
-        st.markdown("#### 🤖 Gemini Model Information (for debugging)")
-        try:
-            available_models = genai.list_models()
-            st.write("Available models for your API key:")
-            for m in available_models:
-                st.write(f"- {m.name} (Supports `generateContent`: {m.supported_generation_methods and 'generateContent' in m.supported_generation_methods})")
-        except Exception as e:
-            st.error(f"Error listing Gemini models: {e}. Please check your API key and internet connection.")
+        # Removed the Gemini Model Information (for debugging) section
+        # st.markdown("---")
+        # st.markdown("#### 🤖 Gemini Model Information (for debugging)")
+        # try:
+        #     available_models = genai.list_models()
+        #     st.write("Available models for your API key:")
+        #     for m in available_models:
+        #         st.write(f"- {m.name} (Supports `generateContent`: {m.supported_generation_methods and 'generateContent' in m.supported_generation_methods})")
+        # except Exception as e:
+        #     st.error(f"Error listing Gemini models: {e}. Please check your API key and internet connection.")
 
 
 # Entry point for the Streamlit application
