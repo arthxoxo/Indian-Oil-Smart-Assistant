@@ -352,7 +352,6 @@ def main():
     if selected == "🏠 Dashboard":
         st.markdown("### 🏠 Overview Dashboard")
         
-        # Display key metrics
         col1, col2, col3, col4 = st.columns(4)
         
         with col1:
@@ -405,7 +404,7 @@ def main():
                 st.info("State distribution chart not available. 'STATE' column not found or is empty.")
         
         with col2:
-            bank_chart = create_bank_distribution()
+            bank_chart = create_bank_distribution_chart()
             if bank_chart:
                 st.plotly_chart(bank_chart, use_container_width=True)
             else:
@@ -571,7 +570,8 @@ def main():
                 with st.spinner("🤖 Thinking..."):
                     try:
                         # Initialize the Gemini GenerativeModel with the corrected model name
-                        model = genai.GenerativeModel('gemini-pro') # Changed model name back to gemini-pro
+                        # Changed model name to gemini-1.5-flash-latest for better compatibility based on previous debug info
+                        model = genai.GenerativeModel('gemini-1.5-flash-latest')
                         # Generate content based on user input
                         response = model.generate_content(user_input)
                         # Extract text from the response
@@ -622,7 +622,6 @@ def main():
                 st.info("State distribution chart not available. 'STATE' column not found or is empty.")
         
         with col2:
-            st.markdown("#### 🏦 Bank Partnership Analysis")
             bank_chart = create_bank_distribution_chart()
             if bank_chart:
                 st.plotly_chart(bank_chart, use_container_width=True)
