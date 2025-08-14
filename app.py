@@ -122,6 +122,20 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         margin: 1rem 0;
     }
+
+    /* New CSS for fixed disclaimer */
+    .fixed-disclaimer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -300,11 +314,16 @@ def main():
     Main function to run the Streamlit application.
     Manages navigation, displays dashboards, search, chat, and analytics sections.
     """
-    # Added disclaimer at the very top of the page
+    # Added disclaimer at the very top of the page, as a fixed element
     st.markdown("""
-    <p><b>Disclaimer:</b> All information, data, and resources used in this report have been sourced from publicly available materials on the internet. This report is created solely for academic and educational purposes as part of an internship project. It is not intended for public distribution, commercial use, or to represent any official stance of Indian Oil Corporation Limited or any other organization.</p>
+    <div class="fixed-disclaimer">
+        <p><b>Disclaimer:</b> All information, data, and resources used in this report have been sourced from publicly available materials on the internet. This report is created solely for academic and educational purposes as part of an internship project. It is not intended for public distribution, commercial use, or to represent any official stance of Indian Oil Corporation Limited or any other organization.</p>
+    </div>
     """, unsafe_allow_html=True)
     
+    # Add a spacer to push down the main content so it's not hidden by the fixed disclaimer
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
+
     # This block now renders the Indian Oil Logo alongside the main title
     st.markdown(
         f'<div style="display: flex; align-items: center; gap: 10px;">'
@@ -702,10 +721,6 @@ def main():
                 Modern UI/UX design</p>
             </div>
             """, unsafe_allow_html=True)
-
-        st.markdown("---")
-        # The disclaimer is now on the main page, so it's removed from the 'About' page.
-        st.markdown("For more information on the project's data sources and purpose, see the disclaimer on the main page.")
 
 # Entry point for the Streamlit application
 if __name__ == "__main__":
