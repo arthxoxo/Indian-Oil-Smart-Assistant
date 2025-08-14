@@ -84,6 +84,11 @@ st.markdown("""
         margin-bottom: 0.75rem; /* Add some space below the header */
     }
 
+    /* Corrected: Text color for content inside feature cards is now explicitly set to black for readability. */
+    .feature-card p, .feature-card ul, .feature-card li {
+        color: #000; /* Set text color to black for readability */
+    }
+
     /* New CSS for About section feature cards - slightly distinct background */
     .about-feature-card {
         background: #f5f5f5; /* A slightly softer off-white background */
@@ -566,7 +571,7 @@ def main():
                         else:
                             st.session_state.chat_history.append(("bot_df", results.head(5)))
                     else:
-                        response = "😔 Sorry, I couldn't find any outlets matching your query. Try broadening your search!"
+                        response = "😔 Sorry, I couldn't find any outlets matching your query. Try searching for a different location or being more specific!"
                         st.session_state.chat_history.append(("bot", response))
             else:
                 # If not an outlet query, use the Gemini model
@@ -685,11 +690,13 @@ def main():
             st.markdown("""
             <div class="feature-card about-feature-card">
                 <h4>🔍 Features</h4>
-                <p>Smart outlet search by location<br>
-                Real-time data analytics<br>
-                AI-powered chat assistant<br>
-                Interactive visualizations<br>
-                Export functionality</p>
+                <ul>
+                    <li>Smart outlet search by location</li>
+                    <li>Real-time data analytics</li>
+                    <li>AI-powered chat assistant</li>
+                    <li>Interactive visualizations</li>
+                    <li>Export functionality</li>
+                </ul>
             </div>
             """, unsafe_allow_html=True)
         
@@ -698,11 +705,13 @@ def main():
             st.markdown("""
             <div class="feature-card about-feature-card">
                 <h4>🚀 Technology</h4>
-                <p>Streamlit for web interface<br>
-                Google Gemini for AI responses<br>
-                Plotly for data visualization<br>
-                Pandas for data processing<br>
-                Modern UI/UX design</p>
+                <ul>
+                    <li>Streamlit for web interface</li>
+                    <li>Google Gemini for AI responses</li>
+                    <li>Plotly for data visualization</li>
+                    <li>Pandas for data processing</li>
+                    <li>Modern UI/UX design</li>
+                </ul>
             </div>
             """, unsafe_allow_html=True)
 
