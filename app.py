@@ -123,24 +123,7 @@ st.markdown("""
         margin: 1rem 0;
     }
 
-    /* New CSS for fixed disclaimer */
-    .fixed-disclaimer {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #ffffff;
-        padding: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        z-index: 1000;
-        text-align: center;
-        border-bottom: 1px solid #ddd;
-    }
-
-    /* Padding for the main content to clear the fixed header */
-    .main-content {
-        padding-top: 100px; /* Adjust this value as needed based on the disclaimer height */
-    }
+    /* The fixed disclaimer class is removed to avoid positioning conflicts */
 </style>
 """, unsafe_allow_html=True)
 
@@ -319,17 +302,12 @@ def main():
     Main function to run the Streamlit application.
     Manages navigation, displays dashboards, search, chat, and analytics sections.
     """
-    # Added disclaimer at the very top of the page, as a fixed element
+    # Placing the disclaimer here ensures it is at the very top of the app content
+    # and scrolls with the rest of the page.
     st.markdown("""
-    <div class="fixed-disclaimer">
-        <p><b>Disclaimer:</b> All information, data, and resources used in this report have been sourced from publicly available materials on the internet. This report is created solely for academic and educational purposes as part of an internship project. It is not intended for public distribution, commercial use, or to represent any official stance of Indian Oil Corporation Limited or any other organization.</p>
-    </div>
+    <p><b>Disclaimer:</b> All information, data, and resources used in this report have been sourced from publicly available materials on the internet. This report is created solely for academic and educational purposes as part of an internship project. It is not intended for public distribution, commercial use, or to represent any official stance of Indian Oil Corporation Limited or any other organization.</p>
     """, unsafe_allow_html=True)
     
-    # Adding an empty space to push the content down so the fixed disclaimer doesn't overlap.
-    # The height of this spacer should be sufficient to clear the disclaimer.
-    st.markdown("<div style='padding-top: 50px;'></div>", unsafe_allow_html=True)
-
     # This block now renders the Indian Oil Logo alongside the main title
     st.markdown(
         f'<div style="display: flex; align-items: center; gap: 10px;">'
@@ -405,7 +383,7 @@ def main():
                     <h3>🏘️ Districts</h3>
                     <h2>{unique_districts}</h2>
                 </div>
-                """, unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
         
         with col4:
             if 'BANK' in outlets_df.columns:
