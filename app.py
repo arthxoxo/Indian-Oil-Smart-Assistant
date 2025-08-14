@@ -84,11 +84,6 @@ st.markdown("""
         margin-bottom: 0.75rem; /* Add some space below the header */
     }
 
-    /* Styling for paragraph and list items within feature cards */
-    .feature-card p, .feature-card ul, .feature-card li {
-        color: #222; /* Very dark grey for maximum readability on light backgrounds */
-    }
-
     /* New CSS for About section feature cards - slightly distinct background */
     .about-feature-card {
         background: #f5f5f5; /* A slightly softer off-white background */
@@ -305,6 +300,11 @@ def main():
     Main function to run the Streamlit application.
     Manages navigation, displays dashboards, search, chat, and analytics sections.
     """
+    # Added disclaimer at the very top of the page
+    st.markdown("""
+    <p><b>Disclaimer:</b> All information, data, and resources used in this report have been sourced from publicly available materials on the internet. This report is created solely for academic and educational purposes as part of an internship project. It is not intended for public distribution, commercial use, or to represent any official stance of Indian Oil Corporation Limited or any other organization.</p>
+    """, unsafe_allow_html=True)
+    
     # This block now renders the Indian Oil Logo alongside the main title
     st.markdown(
         f'<div style="display: flex; align-items: center; gap: 10px;">'
@@ -703,25 +703,10 @@ def main():
             </div>
             """, unsafe_allow_html=True)
 
-        # Removed the Gemini Model Information (for debugging) section
-        # st.markdown("---")
-        # st.markdown("#### 🤖 Gemini Model Information (for debugging)")
-        # try:
-        #     available_models = genai.list_models()
-        #     st.write("Available models for your API key:")
-        #     for m in available_models:
-        #         st.write(f"- {m.name} (Supports `generateContent`: {m.supported_generation_methods and 'generateContent' in m.supported_generation_methods})")
-        # except Exception as e:
-        #     st.error(f"Error listing Gemini models: {e}. Please check your API key and internet connection.")
-
+        st.markdown("---")
+        # The disclaimer is now on the main page, so it's removed from the 'About' page.
+        st.markdown("For more information on the project's data sources and purpose, see the disclaimer on the main page.")
 
 # Entry point for the Streamlit application
 if __name__ == "__main__":
-    # List available Gemini models for debugging (optional, for local testing)
-    try:
-        print("\nAvailable Gemini models for your API key:")
-        for m in genai.list_models():
-            print(m.name)
-    except Exception as e:
-        print(f"Error listing Gemini models: {e}")
     main() # Call the main function to run the app
