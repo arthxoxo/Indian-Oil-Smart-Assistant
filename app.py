@@ -136,6 +136,11 @@ st.markdown("""
         text-align: center;
         border-bottom: 1px solid #ddd;
     }
+
+    /* Padding for the main content to clear the fixed header */
+    .main-content {
+        padding-top: 100px; /* Adjust this value as needed based on the disclaimer height */
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -321,8 +326,9 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Add a spacer to push down the main content so it's not hidden by the fixed disclaimer
-    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    # Adding an empty space to push the content down so the fixed disclaimer doesn't overlap.
+    # The height of this spacer should be sufficient to clear the disclaimer.
+    st.markdown("<div style='padding-top: 50px;'></div>", unsafe_allow_html=True)
 
     # This block now renders the Indian Oil Logo alongside the main title
     st.markdown(
@@ -582,7 +588,7 @@ def main():
                         else:
                             st.session_state.chat_history.append(("bot_df", results.head(5)))
                     else:
-                        response = "😔 Sorry, I couldn't find any outlets matching your query. Try searching for a different location or being more specific!"
+                        response = "😔 Sorry, I couldn't find any outlets matching your query. Try broadening your search!"
                         st.session_state.chat_history.append(("bot", response))
             else:
                 # If not an outlet query, use the Gemini model
